@@ -7,11 +7,16 @@ service / on new http:Listener(9090) {
     # A resource for generating greetings
     # + name - the input string name
     # + return - string name with hello message or error
-    resource function get greeting(string name) returns string|error {
+    resource function post greeting(string name) returns string|error {
         // Send a response back to the caller.
+        http:Response response = new;
+
         if name is "" {
             return error("name should not be empty!");
         }
-        return "Hello, " + name;
+
+        response.setJsonPayload("Hello, " + name);
+        response.statusCode = http:OK;
+        return response;
     }
 }
