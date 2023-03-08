@@ -10,14 +10,10 @@ service / on new http:Listener(9090) {
     resource function post greeting(string name) returns http:Response|error? {
 
         // Send a response back to the caller.
-        http:Response response = new;
-
         if name is "" {
             return error("name should not be empty!");
         }
 
-        response.setJsonPayload("Hello, " + name);
-        response.statusCode = http:OK;
-        return response;
+        return "Hello, " + name + "!";
     }
 }
