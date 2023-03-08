@@ -14,4 +14,12 @@ service / on new http:Listener(9090) {
         }
         return "Hello, " + name;
     }
+
+    resource function post testEchoAPI(@http:Payload json jsonObj, http:Caller caller) returns error? {
+       io:println(string:concat("testEchoAPI : ", jsonObj.toJsonString()));
+       http:Response quickResponse = new;
+       quickResponse.setJsonPayload({"status":"success"});
+       quickResponse.statusCode = http:STATUS_OK;
+       return caller->respond(quickResponse);
+    }
 }
