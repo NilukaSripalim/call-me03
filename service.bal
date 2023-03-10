@@ -1,5 +1,6 @@
 import ballerina/http;
 import ballerina/io;
+import ballerina/lang.runtime;
 
 # A service representing a network-accessible API
 # bound to port `9090`.
@@ -21,6 +22,8 @@ service / on new http:Listener(9090) {
        http:Response quickResponse = new;
        quickResponse.setJsonPayload({"status":"success"});
        quickResponse.statusCode = http:STATUS_OK;
+       // Simulate a slow operation that takes longer than the specified timeout
+       runtime:sleep(2000);
        return caller->respond(quickResponse);
     }
 }
