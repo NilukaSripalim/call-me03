@@ -23,7 +23,7 @@ service / on new http:Listener(9090) {
        quickResponse.setJsonPayload({"status":"success"});
        quickResponse.statusCode = http:STATUS_OK;
        // Simulate a slow operation that takes longer than the specified timeout
-       runtime:sleep(2);
+       // runtime:sleep(2);
        return caller->respond(quickResponse);
     }
 }
