@@ -1,6 +1,6 @@
 import ballerina/http;
 import ballerina/io;
-import ballerina/lang.runtime;
+// import ballerina/lang.runtime;
 
 # A service representing a network-accessible API
 # bound to port `9090`.
