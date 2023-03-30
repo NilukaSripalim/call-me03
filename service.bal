@@ -21,7 +21,7 @@ service / on new http:Listener(9090) {
        io:println(string:concat("testEchoAPI : ", jsonObj.toJsonString()));
        http:Response quickResponse = new;
        quickResponse.setJsonPayload({"status":"success"});
-       quickResponse.statusCode = http:STATUS_OK;
+       quickResponse.statusCode = http:STATUS_CREATED;
        return caller->respond(quickResponse);
     }
 }
